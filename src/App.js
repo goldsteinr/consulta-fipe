@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Select from "react-select";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [brands, setBrands] = useState([]);
+  const [selectedBrand, setSelectedBrand] = useState(null);
+  useEffect(() => {
+    axios
+      .get("http://fipeapi.appspot.com/api/1/carros/marcas.json")
+      .then(response => {
+        console.log(response.data);
+        setBrands(response.data);
+      });
+  }, []);
+
+  const handleChange = selectedOption => {
+    setSelectedBrand({ selectedOption });
+    console.log(`Option selected:`, selectedOption);
+  };
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Select
+          value={selectedBrand}
+          onChange={handleChange}
+          getOptionLabel={option => option.fipe_name}
+          getOptionValue={option => option.id}
+          options={brands}
+        />
       </header>
     </div>
   );
-}
+};
 
 export default App;
