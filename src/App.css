@@ -1,14 +1,73 @@
 .App {
   text-align: center;
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 2em;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
-.divider {
-  height: 2px;
-  width: 100%;
+h1 {
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 20%;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  padding: 0;
+  background: #fff;
+  color: #050505;
+  width: auto;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.card p {
+  background: transparent;
+  margin: 0;
+  padding: 20px 15px;
+  color: #050505;
+  font-weight: 600;
+  font-size: 1em;
+  border-bottom: 1px solid #e6e6e6;
+}
+.card .price {
+  background: #2dcc74;
+  margin: 0;
+  padding: 10px;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  color: white;
+  font-weight: bold;
+  font-size: 1.7em;
+  border: 0;
+}
+
+.btn {
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: all ease 0.3s;
+  cursor: pointer;
   display: block;
-  background: #ececec;
-  margin: 35px 0;
+  margin: 30px auto;
+  background: #b93196;
+  border: 0;
+  color: #fff;
+}
+.btn:hover {
+  background: #a7418c;
+  box-shadow: 0;
+}
+
+.select {
+  color: #050505;
+  margin-bottom: 5%;
 }

@@ -61,52 +61,72 @@ const App = () => {
         setCarDetails(response.data);
       });
   };
+
+  const restart = () => {
+    setSelectedBrand(null);
+    setSelectedModel(null);
+    setSelectedYear(null);
+    setCarDetails(null);
+  };
+
   return (
     <div className="App">
       <h1>Quanto vale meu carro?</h1>
-      <Select
-        value={selectedBrand}
-        onChange={handleBrandChange}
-        getOptionLabel={option => option.fipe_name}
-        getOptionValue={option => option.id}
-        options={brands}
-        placeholder="Escolha a marca:"
-      />
-
-      {models.length > 0 && (
+      {!carDetails && (
         <>
-          <div className="divider" />
           <Select
-            value={selectedModel}
-            onChange={handleModelChange}
+            className="select"
+            value={selectedBrand}
+            onChange={handleBrandChange}
             getOptionLabel={option => option.fipe_name}
             getOptionValue={option => option.id}
-            options={models}
-            placeholder="Escolha o modelo:"
+            options={brands}
+            placeholder="Escolha a marca:"
           />
-        </>
-      )}
 
-      {modelsYears.length > 0 && (
-        <>
-          <div className="divider" />
-          <Select
-            value={selectedYear}
-            onChange={handleModelsYearChange}
-            getOptionLabel={option => option.name}
-            getOptionValue={option => option.id}
-            options={modelsYears}
-            placeholder="Escolha o ano:"
-          />
+          {models.length > 0 && (
+            <>
+              <div className="divider" />
+              <Select
+                className="select"
+                value={selectedModel}
+                onChange={handleModelChange}
+                getOptionLabel={option => option.fipe_name}
+                getOptionValue={option => option.id}
+                options={models}
+                placeholder="Escolha o modelo:"
+              />
+            </>
+          )}
+
+          {modelsYears.length > 0 && (
+            <>
+              <div className="divider" />
+              <Select
+                className="select"
+                value={selectedYear}
+                onChange={handleModelsYearChange}
+                getOptionLabel={option => option.name}
+                getOptionValue={option => option.id}
+                options={modelsYears}
+                placeholder="Escolha o ano:"
+              />
+            </>
+          )}
         </>
       )}
       {carDetails && (
         <>
-          <div className="divider" />
-          <section>
-            <p>{carDetails.preco}</p>
-            <p>{carDetails.name}</p>
+          <section className="card">
+            <p className="name">Modelo: {carDetails.name}</p>
+            <p>Marca: {carDetails.marca}</p>
+            <p>Ano: {carDetails.ano_modelo}</p>
+            <p>Combustível: {carDetails.combustivel}</p>
+            <p className="price">{carDetails.preco}</p>
           </section>
+          <button className="btn" onClick={restart}>
+            Escolher outro carro
+          </button>
         </>
       )}
     </div>
