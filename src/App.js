@@ -43,7 +43,16 @@ const App = () => {
       )
       .then(response => {
         setModels(response.data);
-      });
+      })
+      .catch(err =>
+        swal({
+          icon: "error",
+          title: "Houve um erro!",
+          button: false,
+          text:
+            "O API de consulta a tabela FIPE está temporariamente fora de serviço. Por favor, tente novamente mais tarde."
+        })
+      );
   };
 
   const handleModelChange = selectedOption => {
@@ -56,7 +65,16 @@ const App = () => {
       )
       .then(response => {
         setModelsYears(response.data);
-      });
+      })
+      .catch(err =>
+        swal({
+          icon: "error",
+          title: "Houve um erro!",
+          button: false,
+          text:
+            "O API de consulta a tabela FIPE está temporariamente fora de serviço. Por favor, tente novamente mais tarde."
+        })
+      );
   };
   const handleModelsYearChange = selectedOption => {
     setSelectedYear(selectedOption);
@@ -67,9 +85,17 @@ const App = () => {
         }/${selectedOption.id}.json`
       )
       .then(response => {
-        console.log(response.data);
         setCarDetails(response.data);
-      });
+      })
+      .catch(err =>
+        swal({
+          icon: "error",
+          title: "Houve um erro!",
+          button: false,
+          text:
+            "O API de consulta a tabela FIPE está temporariamente fora de serviço. Por favor, tente novamente mais tarde."
+        })
+      );
   };
 
   const restart = () => {
