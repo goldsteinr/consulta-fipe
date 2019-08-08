@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Select from "react-select";
+import swal from "sweetalert";
 import "./App.css";
 
 const App = () => {
@@ -17,7 +18,16 @@ const App = () => {
       .get("http://fipeapi.appspot.com/api/1/carros/marcas.json")
       .then(response => {
         setBrands(response.data);
-      });
+      })
+      .catch(err =>
+        swal({
+          icon: "error",
+          title: "Houve um erro!",
+          button: false,
+          text:
+            "O API de consulta a tabela FIPE está temporariamente fora de serviço. Por favor, tente novamente mais tarde."
+        })
+      );
   }, []);
 
   const handleBrandChange = selectedOption => {
